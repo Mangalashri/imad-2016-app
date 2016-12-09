@@ -5,12 +5,50 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var article1 = {
+    title: "Article one",
+    heading: "Article one",
+    date:"10 dec 16",
+    content: `<p>
+                    This is the content.This is the content. This is the content. This is the content. This is the content. This is the content.                </p>
+                <p>
+                    This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. 
+                </p>
+            `
+};
+function create(data){
+var htmltemplate=`<html>
+    <head>
+        <title>
+            ${data.title}
+        </title>
+        <meta name="viewport" content="width-device-width,initial-scale-1"/>
+       <link href="/ui/style.css" rel="stylesheet"/>
+    <body>
+        <div class="container">
+            <div>
+                <a href="/">Home</a>
+            </div>
+            <h3>
+                ${data.heading}
+            </h3>
+            <div>
+                ${data.date}
+            </div>
+            <div>
+               ${data.content}
+            </div>
+        </div>
+    </body>
+</html>
+`  
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one',function(req,res){
-  res.sendFile(path.join(__dirname, '/', 'article-one.html'));
+ res.send(create(article1));
 });
 app.get('/article-two',function(req,res){
   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
