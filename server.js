@@ -38,10 +38,14 @@ var ars = { 'article1' : {
 }
 };
 function create(data){
+    var title=data.title;
+    var date=data.date;
+    var heading=data.heading;
+    var content=data.content;
 var htmltemplate=`<html>
     <head>
         <title>
-            ${data.title}
+            ${title}
         </title>
         <meta name="viewport" content="width-device-width,initial-scale-1"/>
        <link href="/ui/style.css" rel="stylesheet"/>
@@ -51,13 +55,13 @@ var htmltemplate=`<html>
                 <a href="/">Home</a>
             </div>
             <h3>
-                ${data.heading}
+                ${heading}
             </h3>
             <div>
-                ${data.date}
+                ${date}
             </div>
             <div>
-               ${data.content}
+               ${content}
             </div>
         </div>
     </body>
